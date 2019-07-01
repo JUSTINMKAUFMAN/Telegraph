@@ -67,6 +67,61 @@ open class Server {
     return httpConfig.errorHandler.respond(to: error)
   }
 
+  /// Allow custom handling of http connection operations
+  open func handleConnectionRequest(_ connection: HTTPConnection, incomingRequest request: HTTPRequest, error: Error?) {
+    workerQueue.addOperation { [weak self, weak connection] in
+      guard let self = self, let connection = connection else { return }
+
+      // Get a response for the request
+      let response = self.workerProcess(request: request, error: error)
+
+      // Send the response or close the connection
+      self.connectionsQueue.async {
+        if let response = response {
+          connection.send(response: response, toRequest: request)
+        } else {
+          connection.close(immediately: true)
+        }
+      }
+    }
+  }
+
+  open func handleConnectionResponse(_ connection: HTTPConnection, incomingResponse response: HTTPResponse, error: Error?) {
+    connection.close(immediately: true)
+  }
+
+  open func handleConnectionUpgrade(_ connection: HTTPConnection, upgradeRequest request: HTTPRequest) {
+    // We can only handle the WebSocket protocol
+    guard request.isWebSocketUpgrade else {
+      connection.close(immediately: true)
+      return
+    }
+
+    // Remove the http connection
+    httpConnections.remove(connection)
+
+    // Extract the socket and any WebSocket data already read
+    let (socket, webSocketData) = connection.upgrade()
+
+    // Add the websocket connection
+    let webSocketConnection = WebSocketConnection(socket: socket, config: webSocketConfig)
+    webSocketConnections.insert(webSocketConnection)
+
+    // Open the websocket connection
+    webSocketConnection.delegate = self
+    webSocketConnection.open(data: webSocketData)
+
+    // Call the delegate
+    delegateQueue.async { [weak self] in
+      guard let self = self else { return }
+      self.webSocketDelegate?.server(self, webSocketDidConnect: webSocketConnection, handshake: request)
+    }
+  }
+
+  open func handleConnectionClose(_ connection: HTTPConnection, error: Error?) {
+    httpConnections.remove(connection)
+  }
+
   /// This function is called on the worker and handles the request and possible errors.
   private func workerProcess(request: HTTPRequest, error: Error?) -> HTTPResponse? {
     do {
@@ -150,60 +205,22 @@ extension Server: TCPListenerDelegate {
 extension Server: HTTPConnectionDelegate {
   /// Raised when a HTTP connection receives an incoming request.
   public func connection(_ httpConnection: HTTPConnection, handleIncomingRequest request: HTTPRequest, error: Error?) {
-    workerQueue.addOperation { [weak self, weak httpConnection] in
-      guard let self = self, let httpConnection = httpConnection else { return }
-
-      // Get a response for the request
-      let response = self.workerProcess(request: request, error: error)
-
-      // Send the response or close the connection
-      self.connectionsQueue.async {
-        if let response = response {
-          httpConnection.send(response: response, toRequest: request)
-        } else {
-          httpConnection.close(immediately: true)
-        }
-      }
-    }
+    handleConnectionRequest(httpConnection, incomingRequest: request, error: error)
   }
 
   /// Raised when a HTTP connection receives an incoming response.
   public func connection(_ httpConnection: HTTPConnection, handleIncomingResponse response: HTTPResponse, error: Error?) {
-    httpConnection.close(immediately: true)
+    handleConnectionResponse(httpConnection, incomingResponse: response, error: error)
   }
 
   /// Raised when a HTTP connection requests an connection upgrade.
   public func connection(_ httpConnection: HTTPConnection, handleUpgradeByRequest request: HTTPRequest) {
-    // We can only handle the WebSocket protocol
-    guard request.isWebSocketUpgrade else {
-      httpConnection.close(immediately: true)
-      return
-    }
-
-    // Remove the http connection
-    httpConnections.remove(httpConnection)
-
-    // Extract the socket and any WebSocket data already read
-    let (socket, webSocketData) = httpConnection.upgrade()
-
-    // Add the websocket connection
-    let webSocketConnection = WebSocketConnection(socket: socket, config: webSocketConfig)
-    webSocketConnections.insert(webSocketConnection)
-
-    // Open the websocket connection
-    webSocketConnection.delegate = self
-    webSocketConnection.open(data: webSocketData)
-
-    // Call the delegate
-    delegateQueue.async { [weak self] in
-      guard let self = self else { return }
-      self.webSocketDelegate?.server(self, webSocketDidConnect: webSocketConnection, handshake: request)
-    }
+    handleConnectionUpgrade(httpConnection, upgradeRequest: request)
   }
 
   /// Raised when a HTTP connection closed, optionally with an error.
   public func connection(_ httpConnection: HTTPConnection, didCloseWithError error: Error?) {
-    httpConnections.remove(httpConnection)
+    handleConnectionClose(httpConnection, error: error)
   }
 }
 
