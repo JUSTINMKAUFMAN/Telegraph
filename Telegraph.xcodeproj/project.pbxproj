@@ -16,6 +16,7 @@
 		821FD9F1216BE58E00D0F486 /* RFC1123.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FD9F0216BE58E00D0F486 /* RFC1123.swift */; };
 		821FD9F2216BE58E00D0F486 /* RFC1123.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FD9F0216BE58E00D0F486 /* RFC1123.swift */; };
 		821FD9F3216BE58E00D0F486 /* RFC1123.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821FD9F0216BE58E00D0F486 /* RFC1123.swift */; };
+		8226A7DA22D3D486002DEFA9 /* RouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226A7D822D3D46D002DEFA9 /* RouteTests.swift */; };
 		822E9622218CD14000567C72 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822E9620218CD14000567C72 /* CocoaAsyncSocket.framework */; };
 		822E9623218CD14000567C72 /* HTTPParserC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822E9621218CD14000567C72 /* HTTPParserC.framework */; };
 		822E9626218CD14900567C72 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822E9624218CD14800567C72 /* CocoaAsyncSocket.framework */; };
@@ -219,6 +220,9 @@
 		82D2AF04210D354600BF5BBA /* DataStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D2AF03210D354600BF5BBA /* DataStream.swift */; };
 		82D2AF05210D354600BF5BBA /* DataStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D2AF03210D354600BF5BBA /* DataStream.swift */; };
 		82D2AF06210D354600BF5BBA /* DataStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D2AF03210D354600BF5BBA /* DataStream.swift */; };
+		82EC461F22CD1E26008A6A22 /* HTTPHeader+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EC461E22CD1E26008A6A22 /* HTTPHeader+Common.swift */; };
+		82EC462022CD1E26008A6A22 /* HTTPHeader+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EC461E22CD1E26008A6A22 /* HTTPHeader+Common.swift */; };
+		82EC462122CD1E26008A6A22 /* HTTPHeader+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EC461E22CD1E26008A6A22 /* HTTPHeader+Common.swift */; };
 		82FB49BE2195BBFB00C4E574 /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FB49BD2195BBFB00C4E574 /* Deprecations.swift */; };
 		82FB49BF2195BBFB00C4E574 /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FB49BD2195BBFB00C4E574 /* Deprecations.swift */; };
 		82FB49C02195BBFB00C4E574 /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FB49BD2195BBFB00C4E574 /* Deprecations.swift */; };
@@ -237,6 +241,7 @@
 /* Begin PBXFileReference section */
 		820EA1D920F9662F00CCCF6C /* SynchronizedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedSet.swift; sourceTree = "<group>"; };
 		821FD9F0216BE58E00D0F486 /* RFC1123.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RFC1123.swift; sourceTree = "<group>"; };
+		8226A7D822D3D46D002DEFA9 /* RouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteTests.swift; sourceTree = "<group>"; };
 		822E9620218CD14000567C72 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/iOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		822E9621218CD14000567C72 /* HTTPParserC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HTTPParserC.framework; path = Carthage/Build/iOS/HTTPParserC.framework; sourceTree = "<group>"; };
 		822E9624218CD14800567C72 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Carthage/Build/tvOS/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
@@ -319,6 +324,7 @@
 		8284FF1C1ECE8C8E00303A00 /* HTTPFileHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPFileHandler.swift; sourceTree = "<group>"; };
 		82897602217402B60089D662 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		82D2AF03210D354600BF5BBA /* DataStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStream.swift; sourceTree = "<group>"; };
+		82EC461E22CD1E26008A6A22 /* HTTPHeader+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPHeader+Common.swift"; sourceTree = "<group>"; };
 		82FB49BD2195BBFB00C4E574 /* Deprecations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deprecations.swift; sourceTree = "<group>"; };
 		D9899DD31DF4A092008766B5 /* Telegraph Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Telegraph Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -414,6 +420,7 @@
 				825A71841ECD22F60043AC8D /* Host */,
 				825A71901ECD25C10043AC8D /* Resources */,
 				825A71811ECD22F60043AC8D /* HelperTests.swift */,
+				8226A7D822D3D46D002DEFA9 /* RouteTests.swift */,
 				825A71831ECD22F60043AC8D /* SecurityTests.swift */,
 			);
 			path = Tests;
@@ -515,6 +522,7 @@
 				825A71DD1ECD2E890043AC8D /* HTTPConnection.swift */,
 				825A71DE1ECD2E890043AC8D /* HTTPError.swift */,
 				825A71DF1ECD2E890043AC8D /* HTTPHeader.swift */,
+				82EC461E22CD1E26008A6A22 /* HTTPHeader+Common.swift */,
 				825A71E01ECD2E890043AC8D /* HTTPMessage.swift */,
 				825A71E11ECD2E890043AC8D /* HTTPMethod.swift */,
 				825A71E21ECD2E890043AC8D /* HTTPParser.swift */,
@@ -961,6 +969,7 @@
 				825A72BD1ECD2E890043AC8D /* TCPListener.swift in Sources */,
 				82D2AF04210D354600BF5BBA /* DataStream.swift in Sources */,
 				825A72AB1ECD2E890043AC8D /* Server+Config.swift in Sources */,
+				82EC461F22CD1E26008A6A22 /* HTTPHeader+Common.swift in Sources */,
 				825A728D1ECD2E890043AC8D /* WebSocketError.swift in Sources */,
 				825A72991ECD2E890043AC8D /* Certificate.swift in Sources */,
 				825A725A1ECD2E890043AC8D /* HTTPRequest.swift in Sources */,
@@ -1033,6 +1042,7 @@
 				825A72BE1ECD2E890043AC8D /* TCPListener.swift in Sources */,
 				82D2AF05210D354600BF5BBA /* DataStream.swift in Sources */,
 				825A72AC1ECD2E890043AC8D /* Server+Config.swift in Sources */,
+				82EC462022CD1E26008A6A22 /* HTTPHeader+Common.swift in Sources */,
 				825A728E1ECD2E890043AC8D /* WebSocketError.swift in Sources */,
 				825A729A1ECD2E890043AC8D /* Certificate.swift in Sources */,
 				825A725B1ECD2E890043AC8D /* HTTPRequest.swift in Sources */,
@@ -1105,6 +1115,7 @@
 				825A72BF1ECD2E890043AC8D /* TCPListener.swift in Sources */,
 				82D2AF06210D354600BF5BBA /* DataStream.swift in Sources */,
 				825A72AD1ECD2E890043AC8D /* Server+Config.swift in Sources */,
+				82EC462122CD1E26008A6A22 /* HTTPHeader+Common.swift in Sources */,
 				825A728F1ECD2E890043AC8D /* WebSocketError.swift in Sources */,
 				825A729B1ECD2E890043AC8D /* Certificate.swift in Sources */,
 				825A725C1ECD2E890043AC8D /* HTTPRequest.swift in Sources */,
@@ -1176,6 +1187,7 @@
 			files = (
 				825A718A1ECD230E0043AC8D /* HelperTests.swift in Sources */,
 				825A718B1ECD23100043AC8D /* SecurityTests.swift in Sources */,
+				8226A7DA22D3D486002DEFA9 /* RouteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
